@@ -1,0 +1,10 @@
+<tr class='<%= item.completed ? 'completed' : '' %>'> 
+  <td class="task"><%= item.title %></td>
+  <td class="time_ago"><%= time_ago_in_words(item.created_at) %> ago</td>
+  <% if policy(Item.new).destroy? %>
+    <td><%= link_to 'Delete', item_path(item), method: :delete %></td>
+    <td><%= link_to 'Complete?  ', item_path(item, item: {completed: true}), method: :put %>
+        <span class="<%= item.completed ? 'glyphicon glyphicon-ok' : '' %>"></span>
+    </td>
+  <% end %>
+</tr>

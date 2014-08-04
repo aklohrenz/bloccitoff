@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blocitoff</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+    <ul class="nav nav-tabs" role="tablist">
+      <li><%= link_to "Blocitoff", root_path %></li>
+      <li><%= link_to "About", about_path %></li>
+      
+      
+      <% if current_user %>
+      <ul class="signed_in nav pull-right user-info nav-right" role="tablist">
+        <li ><span>Hello, <%= link_to current_user.name || current_user.email, current_user %>!  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %></span></li>
+      </ul> 
+      <% else %>
+        <ul class="nav-tabs nav pull-right user-info nav-right" role="tablist">
+        <li><%= link_to "Sign in", new_user_session_path %></li><li><%= link_to "Sign up", new_user_registration_path %> </li>  
+        </ul> 
+      <% end %>
+
+    </ul>
+
+  <div class="container">
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+    <%= yield %>
+  </div>
+</body>
+</html>

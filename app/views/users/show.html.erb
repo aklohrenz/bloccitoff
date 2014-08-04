@@ -1,0 +1,21 @@
+<div class="panel panel-default"
+  <div class="panel-heading">
+      <h2> <%= @user.name || @user.email %>'s List </h2>
+  </div>
+
+
+  <table class="border-radius table table-bordered table-hover table-condensed">
+    <tr>
+      <th>Task</th>      
+      <th>Created</th>
+      <th></th>
+      <th>Completed?</th>
+    </tr>
+    <%= render @items %>
+  </table>
+
+    <% if policy(Item.new).create? %>
+        <%= render partial: 'items/form', locals: {item: Item.new} %>
+    <% end %>
+</div>
+

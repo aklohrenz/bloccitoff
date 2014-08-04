@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Your To-Do List</h1><span class="glyphicon glyphicon-th-list"></span>
+  <table class="table table-bordered table-hover table-condensed">
+    <%= render @items %>
+  </table>
+  <% if policy(Item.new).create? %>
+    <%= render partial: 'items/form', locals: {item: Item.new} %>
+  <% end %>
+</div>
